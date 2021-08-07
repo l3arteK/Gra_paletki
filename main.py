@@ -99,8 +99,14 @@ def reset(player1, player2, ball, window):
 def main():
     player1 = Player(10, 200, 1)
     player2 = Player(1150, 200, 2)
-    ball = Ball(WIDTH / 2, HEIGHT / 2)
+    ball = Ball(WIDTH / 2, HEIGHT / 2-100)
     run = True
+    for i in range(3, -1, -1):
+        time_text = pygame.font.Font.render(pygame.font.SysFont("arial", 72), str(i), True, (255, 255, 255))
+        window.fill((0, 0, 0))
+        window.blit(time_text, (WIDTH / 2 - time_text.get_width() / 2, HEIGHT / 2 - time_text.get_height() / 2))
+        pygame.display.update()
+        time.sleep(1)
     while run:
         pygame.time.Clock().tick(60)
         for event in pygame.event.get():
@@ -119,6 +125,7 @@ def main():
         ball.draw(window)
         game_over(ball, player1, player2, window, KEYS)
         pygame.display.update()
+
 
 
 if __name__ == "__main__":
